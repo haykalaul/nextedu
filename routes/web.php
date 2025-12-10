@@ -22,15 +22,11 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\kebijakanController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
 */
 
 // ===========================
@@ -106,8 +102,14 @@ Route::middleware(['auth'])->group(function () {
         ->name('verification.show');
     Route::post('/email/verify', [EmailVerificationController::class, 'verifyEmail'])
         ->name('verification.verify');
+
+    // ✅ TAMBAHKAN ROUTE INI
     Route::post('/email/verify/resend', [EmailVerificationController::class, 'resendVerificationCode'])
         ->name('verification.resend');
+
+    // ✅ ALIAS untuk backward compatibility (jika ada view yang pakai verification.send)
+    Route::post('/email/verification-notification', [EmailVerificationController::class, 'resendVerificationCode'])
+        ->name('verification.send');
 });
 
 // ===========================
@@ -124,6 +126,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('/profile/update', [ProfileController::class, 'update']); // Alternative PATCH
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // Tanya Jurpan - Fitur tanya jurusan
     Route::get('/tanyaJurpan/page', [AppController::class, 'tanyaJurpan']);
@@ -147,7 +151,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // ===========================
 // 📌 Admin Routes - Rute Admin
 // ===========================
-
 
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     // Admin Dashboard - Dasbor admin
