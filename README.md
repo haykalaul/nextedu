@@ -66,6 +66,9 @@ Sebelum menjalankan proyek ini, pastikan Anda memiliki:
 - **PostgreSQL** atau akun **Supabase**
 - **Git** (untuk cloning repository)
 
+## Screenshoot Dokumentasi
+![Screenshot](docs/hero1.png)
+
 ## 🚀 Setup Lokal
 
 ### 1. Clone Repository
