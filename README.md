@@ -1,7 +1,7 @@
 # NextEdu
 
 <p align="center">
-  <img src="public/assets/logo/logo.png" alt="NextEdu Logo" width="200">
+  <img src="public/assets/logo/logo-typo.png" alt="NextEdu Logo" width="200">
 </p>
 
 [![Laravel](https://img.shields.io/badge/Laravel-%23FF2D20.svg?logo=laravel&logoColor=white)](#)
